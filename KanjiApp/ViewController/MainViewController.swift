@@ -49,7 +49,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         let writtenText = inputKanjiTextField.text! as NSString
  
         // テキスト入力中の表示
-        self.setRobotStatus(status: 0, message: AppConstant.ROBOT_ENTERING_THE_TEXT)
+        self.setRobotStatus(status: .waiting, message: AppConstant.ROBOT_ENTERING_THE_TEXT)
         
         // テキストの文字入力制限表示
         self.textCountLabel.text = "\(writtenText.length) / \(AppConstant.INPUT_TEXT_MAX_LENGTH)"
@@ -71,7 +71,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
         Thread.sleep(forTimeInterval: AppConstant.ROBOT_THINKING_DELAY_SEC)
 
-        self.setRobotStatus(status: 1, message: AppConstant.ROBOT_THINKING_MESSAGE)
+        self.setRobotStatus(status: .thinking, message: AppConstant.ROBOT_THINKING_MESSAGE)
         getHiragana(parameters: [
             "app_id": AppConstant.GOO_HIRAGANA_API_KEY,
             "sentence": self.inputKanjiTextField.text ?? "",
@@ -131,18 +131,18 @@ class MainViewController: UIViewController, UITextFieldDelegate {
                     let json = try JSONDecoder().decode(Response.self, from: data)
                     print(json.converted)
                     // 取得したひらがなのデータを表示する
-                    self?.setRobotStatus(status: 2, message: json.converted.trimmingCharacters(in: .whitespacesAndNewlines))
+                    self?.setRobotStatus(status: .success, message: json.converted.trimmingCharacters(in: .whitespacesAndNewlines))
                     
                 } catch {
                     print("Error")
-                    self?.setRobotStatus(status: 3, message: AppConstant.ROBOT_ERROR_MESSAGE)
+                    self?.setRobotStatus(status: .error, message: AppConstant.ROBOT_ERROR_MESSAGE)
                 }
             }
             task.resume()
 
         }catch {
             print("Error:\(error)")
-            self.setRobotStatus(status: 3, message: AppConstant.ROBOT_ERROR_MESSAGE)
+            self.setRobotStatus(status: .error, message: AppConstant.ROBOT_ERROR_MESSAGE)
             return
         }
     }
@@ -177,26 +177,30 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
 
     // ロボットの状態や表示するテキストを設定する
-    func setRobotStatus(status: Int, message: String) {
+    func setRobotStatus(status: RobotStatus, message: String) {
 
         // メインスレッドで実行する
         DispatchQueue.main.async {
             // ロボットのテキスト設定
             self.outputHiraganaLabel.text = message
 
-            // ロボット文字入力受付中
-            if status == 0 {
-                self.robotStatusImageView.image = self.robotStatusThinkingImage
-            // ロボット思考中
-            }else if status == 1 {
-                self.robotStatusImageView.image = self.robotStatusThinkingImage
-            // 成功
-            }else if status == 2 {
-                self.robotStatusImageView.image = self.robotStatusCompleteImage
-            // 失敗
-            }else if status == 3 {
-                self.robotStatusImageView.image = self.robotStatusErrorImage
+            switch status {
+                // ロボット文字入力受付中
+                case .waiting:
+                    self.robotStatusImageView.image = self.robotStatusThinkingImage
                 
+                // ロボット思考中
+                case .thinking:
+                    self.robotStatusImageView.image = self.robotStatusThinkingImage
+
+                // 成功
+                case .success:
+                    self.robotStatusImageView.image = self.robotStatusCompleteImage
+
+                // 失敗
+                case .error:
+                    self.robotStatusImageView.image = self.robotStatusErrorImage
+
             }
         }
 
@@ -207,3 +211,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
 }
 
+
+enum RobotStatus: Int {
+    case waiting = 0
+    case thinking = 1
+    case success = 2
+    case error = 3
+}
