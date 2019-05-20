@@ -125,17 +125,17 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
                 guard let data = data else { return }
                 do {
                     let json = try JSONDecoder().decode(Response.self, from: data)
                     print(json.converted)
                     // 取得したひらがなのデータを表示する
-                    self.setRobotStatus(status: 2, message: json.converted.trimmingCharacters(in: .whitespacesAndNewlines))
+                    self?.setRobotStatus(status: 2, message: json.converted.trimmingCharacters(in: .whitespacesAndNewlines))
                     
                 } catch {
                     print("Error")
-                    self.setRobotStatus(status: 3, message: AppConstant.ROBOT_ERROR_MESSAGE)
+                    self?.setRobotStatus(status: 3, message: AppConstant.ROBOT_ERROR_MESSAGE)
                 }
             }
             task.resume()
