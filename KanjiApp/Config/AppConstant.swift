@@ -27,6 +27,7 @@ struct AppConstant {
     static let ROBOT_THINKING_MESSAGE = "思考中..."
     static let ROBOT_THINKING_DELAY_SEC = 0.2
     static let ROBOT_ERROR_MESSAGE = "取得に失敗しました。 \nもう一度テキストを入力してください。"
+    static let ROBOT_ERROR_TOO_LONG_MESSAGE = "入力文字数が制限を超えています。\nもう一度テキストを入力してください。"
 
     static let INPUT_TEXT_MAX_LENGTH = 30
 

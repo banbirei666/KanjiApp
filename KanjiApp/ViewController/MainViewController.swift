@@ -46,13 +46,20 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     // テキストフィールドを監視する
     @objc func textFieldDidChange(_ textField: UITextField) {
-        let writtenText = inputKanjiTextField.text! as NSString
- 
+        guard let writtenText: String = inputKanjiTextField.text else { return }
+        
         // テキスト入力中の表示
         self.setRobotStatus(status: .waiting, message: AppConstant.ROBOT_ENTERING_THE_TEXT)
         
         // テキストの文字入力制限表示
-        self.textCountLabel.text = "\(writtenText.length) / \(AppConstant.INPUT_TEXT_MAX_LENGTH)"
+        self.textCountLabel.text = "\(writtenText.count) / \(AppConstant.INPUT_TEXT_MAX_LENGTH)"
+        
+        // 文字数制限にひっかかっている場合は文字数カウントラベルを赤くする
+        if writtenText.count > AppConstant.INPUT_TEXT_MAX_LENGTH {
+            self.textCountLabel.textColor = UIColor.red
+        }else {
+            self.textCountLabel.textColor = UIColor.darkGray
+        }
 
     }
 

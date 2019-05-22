@@ -10,7 +10,6 @@ import UIKit
 
 extension MainViewController: UITextViewDelegate {
     
-    // MARK: TextField delegate methods.
     // テキストフィールがタップされ、入力可能になる直前
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print(#function)
@@ -24,11 +23,18 @@ extension MainViewController: UITextViewDelegate {
         Thread.sleep(forTimeInterval: AppConstant.ROBOT_THINKING_DELAY_SEC)
         
         self.setRobotStatus(status: .thinking, message: AppConstant.ROBOT_THINKING_MESSAGE)
-        getHiragana(parameters: [
-            "app_id": AppConstant.GOO_HIRAGANA_API_KEY,
-            "sentence": self.inputKanjiTextField.text ?? "",
-            "output_type": AppConstant.GOO_HIRAGANA_API_TYPE
-            ])
+        
+        // 文字数制限にひっかかっている場合は、APIを打たない
+        if (textField.text?.count)! > AppConstant.INPUT_TEXT_MAX_LENGTH {
+            self.setRobotStatus(status: .error, message: AppConstant.ROBOT_ERROR_TOO_LONG_MESSAGE)
+        }else {
+            getHiragana(parameters: [
+                "app_id": AppConstant.GOO_HIRAGANA_API_KEY,
+                "sentence": self.inputKanjiTextField.text ?? "",
+                "output_type": AppConstant.GOO_HIRAGANA_API_TYPE
+                ])
+
+        }
         
     }
     
@@ -37,14 +43,6 @@ extension MainViewController: UITextViewDelegate {
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // 文字入力制限
-        let text: String = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        if text.count <= AppConstant.INPUT_TEXT_MAX_LENGTH {
-            return true
-        }
-        return false
-    }
 
 }
 
