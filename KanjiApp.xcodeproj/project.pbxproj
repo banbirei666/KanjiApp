@@ -24,13 +24,13 @@
 		6F6BA1BD22845C3000AD56FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1BB22845C3000AD56FD /* LaunchScreen.storyboard */; };
 		6F6BA1C722845D4C00AD56FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BA1C522845D4C00AD56FD /* MainViewController.swift */; };
 		6F6BA1C822845D4C00AD56FD /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1C622845D4C00AD56FD /* MainViewController.xib */; };
-		6F6BA1CB22846F7900AD56FD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6BA1CA22846F7900AD56FD /* Alamofire.framework */; };
-		6F6BA1CC22846F7A00AD56FD /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6BA1CA22846F7900AD56FD /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6BA1D7228538A000AD56FD /* hukidashi_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1D52285389F00AD56FD /* hukidashi_right.png */; };
 		6F6BA1D8228538A000AD56FD /* hukidashi_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1D62285389F00AD56FD /* hukidashi_left.png */; };
 		6F6BA1DA2285396100AD56FD /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BA1D92285396100AD56FD /* AppConstant.swift */; };
 		6F6BA1E62285781A00AD56FD /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1E52285781A00AD56FD /* robot.png */; };
 		6F6BA1E82285797100AD56FD /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6BA1E72285797100AD56FD /* monkey.png */; };
+		6F6BA2592292E6BB00AD56FD /* MainViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BA2582292E6BB00AD56FD /* MainViewController+UITextFieldDelegate.swift */; };
+		6F6BA25B2292FA7D00AD56FD /* RobotStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BA25A2292FA7D00AD56FD /* RobotStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,7 +40,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6BA1CC22846F7A00AD56FD /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,12 +66,13 @@
 		6F6BA1BE22845C3000AD56FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F6BA1C522845D4C00AD56FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F6BA1C622845D4C00AD56FD /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		6F6BA1CA22846F7900AD56FD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		6F6BA1D52285389F00AD56FD /* hukidashi_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hukidashi_right.png; sourceTree = "<group>"; };
 		6F6BA1D62285389F00AD56FD /* hukidashi_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hukidashi_left.png; sourceTree = "<group>"; };
 		6F6BA1D92285396100AD56FD /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		6F6BA1E52285781A00AD56FD /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot.png; sourceTree = "<group>"; };
 		6F6BA1E72285797100AD56FD /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
+		6F6BA2582292E6BB00AD56FD /* MainViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		6F6BA25A2292FA7D00AD56FD /* RobotStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6BA1CB22846F7900AD56FD /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				6D2CCABC22884FDC00152C63 /* Response.swift */,
+				6F6BA25A2292FA7D00AD56FD /* RobotStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,7 +107,6 @@
 		6F6BA1A622845C2C00AD56FD = {
 			isa = PBXGroup;
 			children = (
-				6F6BA1CA22846F7900AD56FD /* Alamofire.framework */,
 				6F6BA1B122845C2C00AD56FD /* KanjiApp */,
 				6F6BA1B022845C2C00AD56FD /* Products */,
 			);
@@ -124,6 +123,7 @@
 		6F6BA1B122845C2C00AD56FD /* KanjiApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F6BA2572292E68100AD56FD /* Extension */,
 				6DB51C132286B1A600CD0A39 /* Model */,
 				6DB51C022286895600CD0A39 /* Utility */,
 				6F6BA1D32285380300AD56FD /* Resources */,
@@ -180,6 +180,14 @@
 				6F6BA1D52285389F00AD56FD /* hukidashi_right.png */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		6F6BA2572292E68100AD56FD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6F6BA2582292E6BB00AD56FD /* MainViewController+UITextFieldDelegate.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +295,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DB51C0B2286A53F00CD0A39 /* AboutViewController.swift in Sources */,
+				6F6BA2592292E6BB00AD56FD /* MainViewController+UITextFieldDelegate.swift in Sources */,
+				6F6BA25B2292FA7D00AD56FD /* RobotStatus.swift in Sources */,
 				6DB51C172286DFE200CD0A39 /* UILabelLeftBorderExtension.swift in Sources */,
 				6F6BA1C722845D4C00AD56FD /* MainViewController.swift in Sources */,
 				6DB51C04228689A900CD0A39 /* PaddingLabel.swift in Sources */,
