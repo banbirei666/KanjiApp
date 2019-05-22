@@ -124,10 +124,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         // ナビゲーションタイトル
         self.title = AppConstant.NAVIGATION_TITLE_HOME
 
-        self.root_view.translatesAutoresizingMaskIntoConstraints = true
-        self.root_view.frame = CGRect(x:0, y:UIApplication.shared.statusBarFrame.size.height + 30, width: UIScreen.main.bounds.size.width, height:UIScreen.main.bounds.size.height - 50)
-
-        
         self.outputHiraganaLabel.layer.borderWidth = 0.5
         self.outputHiraganaLabel.layer.cornerRadius = 5
         self.outputHiraganaLabel.layer.borderColor = UIColor.gray.cgColor
