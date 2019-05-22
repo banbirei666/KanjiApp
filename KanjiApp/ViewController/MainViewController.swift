@@ -211,10 +211,3 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
 }
 
-
-enum RobotStatus: Int {
-    case waiting = 0
-    case thinking = 1
-    case success = 2
-    case error = 3
-}
