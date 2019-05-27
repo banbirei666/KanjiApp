@@ -73,8 +73,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func aboutButtonTouchUpInside(_ sender: Any) {
         // About画面に遷移
-        let vc: AboutViewController = AboutViewController()
+//        let vc: AboutViewController = AboutViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc: BasicExampleViewController = BasicExampleViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+
     }
     
     
